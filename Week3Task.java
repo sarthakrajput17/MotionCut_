@@ -69,18 +69,21 @@ public class Week3Task {
             System.out.print("Invalid choice. Please enter a number: ");
             scanner.next();
         }
-        return scanner.nextInt();
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Clear the buffer
+        return choice;
     }
 
     public static void addExpense(Scanner scanner) {
         System.out.print("Enter the expense description: ");
-        String description = scanner.next();
+        String description = scanner.nextLine();
 
         System.out.print("Enter the expense amount: ");
         double amount;
         while (true) {
             if (scanner.hasNextDouble()) {
                 amount = scanner.nextDouble();
+                scanner.nextLine(); // Clear the buffer
                 break;
             } else {
                 System.out.print("Invalid input. Please enter a valid amount: ");
@@ -89,7 +92,7 @@ public class Week3Task {
         }
 
         System.out.print("Enter the expense category: ");
-        String category = scanner.next();
+        String category = scanner.nextLine();
 
         expenses.add(new Expense(description, amount, category));
         System.out.println("Expense added successfully.");
@@ -117,7 +120,7 @@ public class Week3Task {
 
         System.out.println("Expense Summaries:");
         System.out.println("1. Total expenses for a specific category");
-        System.out.println("2. Total expenses for a given time period");
+        System.out.println("2. Total expenses for a given time period (not implemented)");
         System.out.print("Enter your choice: ");
 
         int summaryChoice = getUserChoice(scanner);
@@ -125,12 +128,11 @@ public class Week3Task {
         switch (summaryChoice) {
             case 1:
                 System.out.print("Enter the category to summarize: ");
-                String category = scanner.next();
+                String category = scanner.nextLine();
                 double totalCategoryExpense = calculateTotalCategoryExpense(category);
                 System.out.println("Total expenses for category '" + category + "': Rs." + totalCategoryExpense);
                 break;
             case 2:
-
                 System.out.println("Time-based summaries are not implemented in this version.");
                 break;
             default:
